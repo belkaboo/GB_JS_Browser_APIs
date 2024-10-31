@@ -1,8 +1,8 @@
-// Загружаем данные из JSON файла и отображаем на странице
+
 fetch('data.json')
     .then(response => response.json())
     .then(classes => {
-        window.classesData = classes; // Сохраняем данные в глобальной переменной для последующего обновления
+        window.classesData = classes;
         displayClasses(classesData);
     })
     .catch(error => console.error('Ошибка загрузки данных:', error));
@@ -90,8 +90,9 @@ function updateDisplay(activity) {
     }
 }
 
-function saveToLocalStorage() {
+function saveToLocalStorage() { // 
     localStorage.setItem('classesData', JSON.stringify(window.classesData));
 }
 
 
+// добавить запись в JSON
