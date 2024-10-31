@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "title": "Йога",
+        "time": "10:00 - 11:00",
+        "maxParticipants": 10,
+        "currentParticipants": 7
+    },
+    {
+        "id": 2,
+        "title": "Пилатес",
+        "time": "12:00 - 13:00",
+        "maxParticipants": 8,
+        "currentParticipants": 8
+    },
+    {
+        "id": 3,
+        "title": "Танцы",
+        "time": "14:00 - 15:00",
+        "maxParticipants": 15,
+        "currentParticipants": 10
+    },
+    {
+        "id": 4,
+        "title": "Бокс",
+        "time": "15:00 - 16:00",
+        "maxParticipants": 10,
+        "currentParticipants": 3
+    },
+    {
+        "id": 5,
+        "title": "Борьба",
+        "time": "16:00 - 17:00",
+        "maxParticipants": 10,
+        "currentParticipants": 3
+    },
+    {
+        "id": 6,
+        "title": "Фитнес",
+        "time": "18:00 - 20:00",
+        "maxParticipants": 20,
+        "currentParticipants": 20
+    }
+]
