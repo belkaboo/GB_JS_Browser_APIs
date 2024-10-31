@@ -8,22 +8,6 @@ fetch('data.json')
     .catch(error => console.error('Ошибка загрузки данных:', error));
 
 
-function saveToJson() {
-    fetch('data.json', {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(window.classesData)
-    })
-        .then(response => {
-            if (!response.ok) throw new Error('Ошибка сохранения данных');
-            console.log('Данные успешно сохранены');
-        })
-        .catch(error => console.error(error));
-}
-
-
 function displayClasses(classes) {
     const container = document.getElementById('classesContainer');
     container.innerHTML = '';
@@ -59,7 +43,7 @@ function enroll(classId) {
             activity.isEnrolled = true;
             updateDisplay(activity);
             alert(`Вы записались на занятие - ${activity.title}`);
-            saveToJson();
+
         }
     }
 }
@@ -73,8 +57,6 @@ function cancelEnroll(classId) {
         activity.currentParticipants--;
         activity.isEnrolled = false;
         updateDisplay(activity);
-        saveToJson();
-
         alert(`Вы отменили запись на занятие - ${activity.title}`)
     }
 }
