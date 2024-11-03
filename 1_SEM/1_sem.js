@@ -71,7 +71,6 @@ const delBtn = document.querySelector('.del-button');
 const clonBtn = document.querySelector('.clon-button');
 const boxDiv = document.querySelector('.box-container');
 
-const newEl = `<div class="box">1</div>`
 
 addBtn.addEventListener('click', function (e) {
     const newBox = document.createElement('div');
@@ -79,6 +78,10 @@ addBtn.addEventListener('click', function (e) {
     newBox.textContent = boxDiv.children.length + 1
     boxDiv.appendChild(newBox);
 
+    // counter = boxDiv.children.length + 1;
+    // boxDiv.insertAdjacentHTML("beforeend", `
+    //     <div class="box">${boxDiv.children.length + 1}</div>
+    //     `)
 });
 
 delBtn.addEventListener('click', function (e) {
@@ -90,10 +93,15 @@ delBtn.addEventListener('click', function (e) {
 
 clonBtn.addEventListener('click', function (e) {
     if (boxDiv.children.length > 0) {
-        const cloneBox = document.createElement('div');
-        cloneBox.classList.add('box');
-        cloneBox.textContent = boxDiv.lastChild.textContent;
-        boxDiv.appendChild(cloneBox);
+        // const cloneBox = document.createElement('div');
+        // cloneBox.classList.add('box');
+        // cloneBox.textContent = boxDiv.lastChild.textContent;
+        // boxDiv.appendChild(cloneBox);
+
+        //из семинара
+        const lastBox = boxDiv.lastChild;
+        const cloneBox = lastBox.cloneNode(true);
+        boxDiv.appendChild(cloneBox)
     }
 });
 
@@ -117,3 +125,160 @@ JSON-данные для определения заголовков и текс
 7. Все изменения (добавление, удаление, редактирование) должны быть сохранены в локальное
 хранилище браузера, чтобы они сохранялись после перезагрузки страницы.
 */
+
+
+const articlesData = [
+    {
+        title: 'Название статьи 1',
+        content: 'Текст статьи 1, текст статьи. ТЕКСТ'
+
+    },
+    {
+        title: 'Название статьи 2',
+        content: 'Текст статьи 2, текст статьи. ТЕКСТтексттекст'
+
+    },
+    {
+        title: 'Название статьи 3',
+        content: 'Текст статьи 3, текстстатьи. ТЕКСТ'
+
+    }
+];
+
+articlesData.forEach(currentItem => {
+    const articleItem = createArticle(currentItem.title, currentItem.content);
+    articleList.append(articleItem);
+
+});
+
+
+function createArticle(title, content) {
+    const articelItem = document.createElement('li');
+    articelItem.classList.add('list-group-item');
+
+    const articleTitle = document.createElement('h2');
+    articleTitle.classList.add('mb-3');
+    articleTitle.textContent = title;
+
+    const articleContent = document.createElement('p');
+    articleContent.textContent = content;
+
+    const editButton = document.createElement('button');
+    editButton.classList.add('btn', 'btn-warning');
+    editButton.textContent = 'Редактировать'
+
+    const delButton = document.createElement('button');
+    delButton.classList.add('btn', 'btn-danger', 'm-2')
+    delButton.textContent = 'Удалить'
+
+    articelItem.append(articleTitle);
+    articelItem.append(articleContent);
+    articelItem.append(editButton);
+    articelItem.append(delButton);
+
+
+    return articelItem;
+}
+
+saveNewArticle.addEventListener('click', function (e) {
+    const newTitle = formInput.value.trim();
+    const newContent = formTextarea.value.trim();
+    const articelItem = createArticle(newTitle, newContent);
+    articleList.append(articelItem);
+    formInput.value = '';
+    formTextarea.value = ''
+});
+
+
+articleList.addEventListener('click', function (e) {
+    if (e.target.textContent === 'Удалить') {
+        const articleItem = e.target.closest('li');
+        articleItem.remove();
+    }
+    if (e.target.textContent === 'Редактировать') {
+        const articleItem = e.target.closest('li');
+        const articleTitle = articleItem.querySelector('h2');
+        const articleContent = articleItem.querySelector('p');
+
+        const newTitle = prompt('Введите название статьи', articleTitle.textContent);
+        const newContent = prompt('Введите текст статьи', articleContent.textContent);
+
+        articleTitle.textContent = newTitle;
+        articleContent.textContent = newContent;
+
+    }
+});
+
+
+/*
+1.накрутить свой функционал
+2. накрутить модальное окно на кнопку редактирования
+*/
+
+
+
+
+
+/* // заготовка
+
+
+displayArticles(articlesData);
+
+// загрузка списка статей.
+
+function displayArticles(articles) {
+    document.getElementById('articleList').innerHTML = '';
+    articles.forEach(article => {
+        document.getElementById('articleList').insertAdjacentHTML('beforeend', `
+        <li class="list-group-item">
+        <h3 class='mb-3'>${article.title}</h3>
+        <p>${article.content}</p>
+        <button class="btn btn-warning mt-2 col-3">Редактировать</button>
+        <button class="btn btn-danger mt-2 col-2">Удалить</button>
+        </li>
+    `)
+    });
+}
+
+
+function createArticle(articles, title, content) {
+// собрать tittle и content из модального окна и запушить в новый объект со статьями.
+}
+
+
+function editArticle(arguments) {
+// вызвать модальное окно, передать текущие значения в input и textarea, изменения запушить в объект. перерисовать страницу
+
+}
+
+
+
+function deleteArticle(article) {
+    // найти индекс нужной статьи, удалить из массива, перерисовать страницу
+
+    const indexToDel = articlesData.findIndex(elem => elem.title === article)
+    articlesData.splice(indexToDel, 1);
+    displayArticles(articlesData);
+}
+
+
+const s = document.querySelectorAll('.btn-danger')
+
+s.forEach(button => {
+    button.addEventListener('click', function (e) {
+        const titleText = e.target.closest('.list-group-item').querySelector('h3').textContent;
+        deleteArticle(titleText);
+    });
+});
+
+
+
+document.getElementById('addArticleButton')
+    .addEventListener('click', function (e) {
+        createArticle(articlesData, 'new', 'newsd');
+        console.log(articlesData);
+    });
+*/
+
+
+
