@@ -196,18 +196,30 @@ articleList.addEventListener('click', function (e) {
         articleItem.remove();
     }
     if (e.target.textContent === 'Редактировать') {
+
+        const editArticleModal = new bootstrap.Modal(document.getElementById('editArticleModal'));
+        editArticleModal.show();
+
         const articleItem = e.target.closest('li');
         const articleTitle = articleItem.querySelector('h2');
         const articleContent = articleItem.querySelector('p');
 
-        const newTitle = prompt('Введите название статьи', articleTitle.textContent);
-        const newContent = prompt('Введите текст статьи', articleContent.textContent);
+        editFormInput.value = articleTitle.textContent;
+        editFormTextarea.value = articleContent.textContent;
 
-        articleTitle.textContent = newTitle;
-        articleContent.textContent = newContent;
+        saveEditArticle.addEventListener('click', function (e) {
+            articleTitle.textContent = editFormInput.value.trim();
+            articleContent.textContent = editFormTextarea.value.trim();
+            editArticleModal.close();
 
+        });
     }
 });
+
+
+
+
+
 
 
 /*

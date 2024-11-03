@@ -90,9 +90,10 @@ function updateDisplay(activity) {
     }
 }
 
+
+// но зачем?! а чтоб было.
 function saveToLocalStorage() { // 
     localStorage.setItem('classesData', JSON.stringify(window.classesData));
 }
 
 
-// добавить запись в JSON
