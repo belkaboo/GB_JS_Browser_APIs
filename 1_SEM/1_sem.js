@@ -180,7 +180,7 @@ function createArticle(title, content) {
     return articelItem;
 }
 
-saveNewArticle.addEventListener('click', function (e) {
+saveNewArticle.addEventListener('click', function (e) { // добавить проверки на пустые строки
     const newTitle = formInput.value.trim();
     const newContent = formTextarea.value.trim();
     const articelItem = createArticle(newTitle, newContent);
@@ -207,10 +207,9 @@ articleList.addEventListener('click', function (e) {
         editFormInput.value = articleTitle.textContent;
         editFormTextarea.value = articleContent.textContent;
 
-        saveEditArticle.addEventListener('click', function (e) {
+        saveEditArticle.addEventListener('click', function (e) { // добавить проверкм на пустые строки
             articleTitle.textContent = editFormInput.value.trim();
             articleContent.textContent = editFormTextarea.value.trim();
-            editArticleModal.close();
 
         });
     }
@@ -221,17 +220,7 @@ articleList.addEventListener('click', function (e) {
 
 
 
-
-/*
-1.накрутить свой функционал
-2. накрутить модальное окно на кнопку редактирования
-*/
-
-
-
-
-
-/* // заготовка
+/* // заготовка другого варианта
 
 
 displayArticles(articlesData);
