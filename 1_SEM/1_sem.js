@@ -180,13 +180,16 @@ function createArticle(title, content) {
     return articelItem;
 }
 
-saveNewArticle.addEventListener('click', function (e) { // добавить проверки на пустые строки
+saveNewArticle.addEventListener('click', function (e) {
     const newTitle = formInput.value.trim();
     const newContent = formTextarea.value.trim();
-    const articelItem = createArticle(newTitle, newContent);
-    articleList.append(articelItem);
-    formInput.value = '';
-    formTextarea.value = ''
+
+    if (newContent && newTitle) {
+        const articelItem = createArticle(newTitle, newContent);
+        articleList.append(articelItem);
+        formInput.value = '';
+        formTextarea.value = ''
+    }
 });
 
 
@@ -207,10 +210,14 @@ articleList.addEventListener('click', function (e) {
         editFormInput.value = articleTitle.textContent;
         editFormTextarea.value = articleContent.textContent;
 
-        saveEditArticle.addEventListener('click', function (e) { // добавить проверкм на пустые строки
-            articleTitle.textContent = editFormInput.value.trim();
-            articleContent.textContent = editFormTextarea.value.trim();
+        saveEditArticle.addEventListener('click', function (e) {
+            const editedTitle = editFormInput.value.trim();
+            const editedContent = editFormTextarea.value.trim();
 
+            if (editedTitle && editedContent) {
+                articleTitle.textContent = editedTitle;
+                articleContent.textContent = editedContent;
+            }
         });
     }
 });
