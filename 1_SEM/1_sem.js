@@ -220,6 +220,8 @@ articleList.addEventListener('click', function (e) {
 
 
 
+
+
 /* // заготовка другого варианта
 
 
